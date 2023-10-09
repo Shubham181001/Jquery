@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jQuery Demo</title>
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <link
+      rel="stylesheet"
+      href="./node_modules/bootstrap/dist/css/bootstrap.css"
+    />
+    <link
+      rel="stylesheet"
+      href="./node_modules/bootstrap-icons/font/bootstrap-icons.css"
+    />
+    <script>
+      $(function () {
+        $("button").click(() => {
+          $("#details").html(`
+                Name: ${$("#Name").val()} <br>
+                Price: ${$("#Price").val()} <br>
+                City: ${$("#City").val()} <br>
+                Stock: ${
+                  $("#Stock").prop("checked") === true
+                    ? "Available"
+                    : "Out of Stock"
+                } <br>
+                `);
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h2 class="text-primary text-center">Register Product</h2>
+    <dl
+      class="form form-control d-flex felx-wrap justify-content-center align-items-center flex-column w-100"
+    >
+      <dt><label for="Name">Name</label></dt>
+      <dd><input type="text" name="" id="Name" /></dd>
+      <dt><label for="Price">Price</label></dt>
+      <dd><input type="text" name="" id="Price" /></dd>
+      <dt><label for="City">City</label></dt>
+      <dd>
+        <select name="" id="City" class="form-select">
+          <option>Delhi</option>
+          <option>Jaipur</option>
+        </select>
+      </dd>
+      <dt><label for="Stock">Stock</label></dt>
+      <dd class="form-check form-switch mb-3">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          name=""
+          id="Stock"
+        />Available
+      </dd>
+      <button
+        class="btn btn-primary d-flex justify-content-center align-items-center"
+        type="submit"
+      >
+        Register
+      </button>
+    </dl>
+    <!-- <hr size="4" color="gray" /> -->
+    <p id="details"></p>
+  </body>
+</html>

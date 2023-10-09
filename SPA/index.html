@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Index</title>
+    <link
+      rel="stylesheet"
+      href="../node_modules/bootstrap/dist/css/bootstrap.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/bootstrap-icons/font/bootstrap-icons.css"
+    />
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+
+    <script>
+      $(function () {
+        function loadPage(pageName) {
+          $.ajax({
+            method: "get",
+            url: pageName,
+            success: function (data) {
+              $("main").html(data);
+            },
+          });
+        }
+        $("#home").click(function () {
+          loadPage("home.html");
+        });
+        $("#electronics").click(function () {
+          loadPage("electronics.html");
+        });
+        $("#footwear").click(function () {
+          loadPage("footwear.html");
+        });
+        $("#fashion").click(function () {
+          loadPage("fashion.html");
+        });
+        $("#products").click(function () {
+          $.ajax({
+            method: "get",
+            url: "http://fakestoreapi.com/products",
+            success: function (data) {
+              $.each(data, function (key, product) {
+                $(`<div class="card m-2 p-2" style="width:200px">
+                        <img src=${product.image} height="150" class="card-img-top"/>
+                        <div class="card-header" style="height: 186px">
+                            <p>${product.title}</p>
+                        </div>
+                        <div class="card-footer">
+                           <p>${product.price}</p>
+                           <button class="btn btn-danger w-100">Add to Cart</button> 
+                        </div>
+                        </div>
+                        `).appendTo("main");
+              });
+            },
+          });
+        });
+      });
+    </script>
+  </head>
+  <body class="container-fluid">
+    <header class="bg-danger text-white text-center p-2">
+      <h2><span class="bi bi-cart2"></span> Shopping Online</h2>
+    </header>
+    <section class="row">
+      <nav class="col-3">
+        <div class="mb-2 mt-2">
+          <button id="home" class="btn btn-danger w-100">
+            <span class="bi bi-house"></span> Home
+          </button>
+        </div>
+        <div class="mb-2">
+          <button id="electronics" class="btn btn-danger w-100">
+            Electronics
+          </button>
+        </div>
+        <div class="mb-2">
+          <button id="footwear" class="btn btn-danger w-100">Footwear</button>
+        </div>
+        <div class="mb-2">
+          <button id="fashion" class="btn btn-danger w-100">Fashion</button>
+        </div>
+        <div class="mb-2">
+          <button id="products" class="btn btn-danger w-100">
+            ALL Products
+          </button>
+        </div>
+      </nav>
+      <main class="col-9 d-flex flex-wrap overflow-auto" style="height: 650px"></main>
+    </section>
+  </body>
+</html>

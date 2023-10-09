@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arrays</title>
+    <link
+      rel="stylesheet"
+      href="./node_modules/bootstrap/dist/css/bootstrap.css"
+    />
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <script>
+      $(function () {
+        fetch("http://fakestoreapi.com/products")
+          .then((response) => response.json())
+          .then((data) => {
+            $.each(data, function(key, product){
+              $(`<div class="card m-2 p-2" style="width:200px">
+                        <img src=${product.image} height="150" class="card-img-top"/>
+                        <div class="card-header" style="height: 186px">
+                            <p>${product.title}</p>
+                        </div>
+                        <div class="card-footer">
+                           <p>${product.price}</p>
+                           <button class="btn btn-danger w-100">Add to Cart</button> 
+                        </div>
+                        </div>
+                        `).appendTo("#Catalog");
+            });
+          });
+      });
+    </script>
+  </head>
+  <body class="container-fluid">
+    <h2 class="text-center text-danger">Products Catalog</h2>
+    <div class="d-flex flex-wrap justify-content-center" id="Catalog"></div>
+  </body>
+</html>
